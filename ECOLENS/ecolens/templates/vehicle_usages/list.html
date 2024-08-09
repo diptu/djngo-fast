@@ -1,0 +1,30 @@
+{% extends "includes/base.html" %}
+
+{% block content %}
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">SI</th>
+        <th scope="col">Flight</th>
+        <th scope="col">Public Transit</th>
+        <th scope="col">Flight Emission</th>
+        <th scope="col">Public Transit Emisssion</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+    
+              <tr>
+                <td><a class="nav-link" href="{{item.id}}">{{item.id}}</a></td>
+                <td>{{item.flight_distance}} {{item.get_flight_unit_display}} </td>
+                <td>{{item.public_transit_distance}} {{item.get_transit_unit_display}}</td>
+                <td>{{item.flight_emission}} {{item.get_flight_emission_unit_display}}</td>
+                <td>{{item.public_transit_emission}} {{item.get_transit_emission_unit_display}}</td>
+              </tr>
+             
+           
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

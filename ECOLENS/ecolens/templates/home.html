@@ -1,0 +1,26 @@
+{% extends "includes/base.html" %}
+
+{% block content %}
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">flight_distance</th>
+        <th scope="col">public_transit_distance</th>
+        <th scope="col">flight_emission</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+    
+              <tr>
+                <td>{{item.flight_distance}} {{item.get_flight_unit_display}} </td>
+                <td>{{item.public_transit_distance}} {{item.get_transit_unit_display}}</td>
+                <td>{{item.flight_emission}}</td>
+              </tr>
+             
+           
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
