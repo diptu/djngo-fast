@@ -1,5 +1,5 @@
 """
-URL configuration for ecolens project.
+URL configuration for ECOLENS project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,25 +16,15 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from .views import home, about
-from vehicle_usages.views import (
-    vehicle_usages_list,
-    vehicle_usages_detail,
-    vehicle_usages_create,
-)
-
-from accounts.views import login_view, logout_view, register_view
+from django.urls import include, path
+from .views import home_view, about_view
 
 urlpatterns = [
-    path("", home),
-    path("about", about),
-    path("signup", register_view),
-    path("login", login_view),
-    path("logout", logout_view),
-    path("vehicle_usages/", vehicle_usages_list),
-    path("vehicle_usages/", vehicle_usages_list),
-    path("vehicle_usages/create", vehicle_usages_create),
-    path("vehicle_usages/<int:id>", vehicle_usages_detail),
     path("admin/", admin.site.urls),
+    path("", home_view, name="home"),
+    path("about/", about_view, name="about"),
+    path("vehicle_usages/", include("vehicle_usages.urls")),
+    path("household_usages/", include("household.urls")),
+    path("food/", include("food.urls")),
+    path("accounts/", include("accounts.urls")),
 ]

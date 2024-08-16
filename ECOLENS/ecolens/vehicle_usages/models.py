@@ -6,7 +6,7 @@ from django.utils import timezone
 
 from django.db import models
 from django.utils import timezone
-
+from django.urls import reverse
 from .utils import (
     DistanceUnit,
     FLIGHT_DISTANCE_CONVERSION_FACTORS,
@@ -54,8 +54,8 @@ class DistanceUnit(models.TextChoices):
 
 
 class CO2EmissionUnit(models.TextChoices):
-    TCO2EQ = "tCO2eq", "Tons of Carbon Dioxide Equivalent"
-    TCO2EQ_PER_KM = "tCO2eq/km", "Tons of Carbon Dioxide Equivalent per Kilometer"
+    TCO2 = "tCO2", "Tons of Carbon Dioxide"
+    # TCO2EQ_PER_KM = "tCO2", "Tons of Carbon Dioxide"
 
 
 class VehicleUsages(models.Model):
@@ -127,47 +127,47 @@ class VehicleUsages(models.Model):
         validators=[validate_distance_unit],
     )
 
-    # TESTING
+    # CALCULATED FILDS
     flight_emission = models.FloatField(default=0)
     flight_emission_unit = models.CharField(
         max_length=10,
         choices=CO2EmissionUnit.choices,
-        default=CO2EmissionUnit.TCO2EQ_PER_KM,
+        default=CO2EmissionUnit.TCO2,
         blank=False,
     )
     public_transit_emission = models.FloatField(default=0)
     transit_emission_unit = models.CharField(
         max_length=10,
         choices=CO2EmissionUnit.choices,
-        default=CO2EmissionUnit.TCO2EQ_PER_KM,
+        default=CO2EmissionUnit.TCO2,
         blank=False,
     )
     gasoline_car_emissions = models.FloatField(default=0)
     gasoline_car_emission_unit = models.CharField(
         max_length=10,
         choices=CO2EmissionUnit.choices,
-        default=CO2EmissionUnit.TCO2EQ_PER_KM,
+        default=CO2EmissionUnit.TCO2,
         blank=False,
     )
     diesel_car_emissions = models.FloatField(default=0)
     diesel_car_emissions_unit = models.CharField(
         max_length=10,
         choices=CO2EmissionUnit.choices,
-        default=CO2EmissionUnit.TCO2EQ_PER_KM,
+        default=CO2EmissionUnit.TCO2,
         blank=False,
     )
     electric_car_emissions = models.FloatField(default=0)
     electric_car_emissions_unit = models.CharField(
         max_length=10,
         choices=CO2EmissionUnit.choices,
-        default=CO2EmissionUnit.TCO2EQ_PER_KM,
+        default=CO2EmissionUnit.TCO2,
         blank=False,
     )
     hybrid_car_emissions = models.FloatField(default=0)
     hybrid_car_emissions_unit = models.CharField(
         max_length=10,
         choices=CO2EmissionUnit.choices,
-        default=CO2EmissionUnit.TCO2EQ_PER_KM,
+        default=CO2EmissionUnit.TCO2,
         blank=False,
     )
     created_at = models.DateTimeField(auto_now_add=True)
@@ -188,7 +188,7 @@ class VehicleUsages(models.Model):
             * GASOLINE_CAR_EMISSIONS_PER_KM[self.gasolin_car_unit]
         ) + GASOLINE_CAR_MANUFACTURING_EMISSIONS[self.gasolin_car_unit]
 
-        self.disel_car_emissions = (
+        self.diesel_car_emissions = (
             self.diesel_car_driven * DISEL_CAR_EMISSIONS_PER_KM[self.diesel_car_unit]
         ) + DIESEL_CAR_MANUFACTURING_EMISSIONS[self.diesel_car_unit]
 
@@ -201,3 +201,11 @@ class VehicleUsages(models.Model):
         ) + HYBRID_CAR_MANUFACTURING_EMISSIONS[self.hybrid_car_unit]
 
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return str(self.id)
+
+    def get_absolute_url(self):
+        return reverse(
+            "vehicle_usages:detail", kwargs={"pk": self.pk}
+        )  # f"/vehicle_usages/{self.pk}"

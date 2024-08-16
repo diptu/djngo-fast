@@ -2,25 +2,34 @@
 
 {% block content %}
 
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">flight_distance</th>
-        <th scope="col">public_transit_distance</th>
-        <th scope="col">flight_emission</th>
-      </tr>
-    </thead>
-    <tbody>
-        {% for item in items %}
-    
-              <tr>
-                <td>{{item.flight_distance}} {{item.get_flight_unit_display}} </td>
-                <td>{{item.public_transit_distance}} {{item.get_transit_unit_display}}</td>
-                <td>{{item.flight_emission}}</td>
-              </tr>
-             
-           
-        {% endfor %}
-    </tbody>
-</table>
+<h2>Home</h2>
+<main>
+  <section class="hero">
+    <i class="bi bi-house-fill fs-1"></i>
+      <h2>Discover Your Impact</h2>
+      <p>Calculate your carbon footprint and take the first step towards a greener future.</p>
+      <a class="calculate-button" href="/vehicle_usages/create">Calculate Now</a>
+  </section>
+ <!-- 
+  <section class="features">
+      <h2>How EcoLens Can Help</h2>
+      <div class="feature">
+          <h3>Personalized Goals</h3>
+          <p>Set achievable targets based on your lifestyle.</p>
+      </div>
+      <div class="feature">
+          <h3>Track Your Progress</h3>
+          <p>Monitor your carbon footprint reduction over time.</p>
+      </div>
+      <div class="feature">
+          <h3>Actionable Recommendations</h3>
+          <p>Get practical tips to reduce your environmental impact.</p>
+      </div> 
+  </section>-->
+  <!-- <section class="call-to-action">
+      <h2>Join the EcoLens Community</h2>
+      <p>Connect with like-minded individuals and share your sustainability journey.</p>
+      <button class="join-button">Join Us</button>
+  </section> -->
+</main>
 {% endblock %}

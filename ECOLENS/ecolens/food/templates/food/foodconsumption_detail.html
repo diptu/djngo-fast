@@ -1,0 +1,44 @@
+{% extends "includes/base.html" %}
+
+{% block content %}
+
+
+<h3>{{heading|upper}}</h3>
+  <div class="card-deck">
+        <div class="card border-info mb-3" style="max-width: 40rem;">
+          <div class="card-header text-center" data-toggle="tooltip" data-placement="top" title="FOOD CONSUMPTION">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-egg-fried" viewBox="0 0 16 16">
+              <path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+              <path d="M13.997 5.17a5 5 0 0 0-8.101-4.09A5 5 0 0 0 1.28 9.342a5 5 0 0 0 8.336 5.109 3.5 3.5 0 0 0 5.201-4.065 3.001 3.001 0 0 0-.822-5.216zm-1-.034a1 1 0 0 0 .668.977 2.001 2.001 0 0 1 .547 3.478 1 1 0 0 0-.341 1.113 2.5 2.5 0 0 1-3.715 2.905 1 1 0 0 0-1.262.152 4 4 0 0 1-6.67-4.087 1 1 0 0 0-.2-1 4 4 0 0 1 3.693-6.61 1 1 0 0 0 .8-.2 4 4 0 0 1 6.48 3.273z"/>
+            </svg> 
+          </div>
+          <div class="card-body text-info align-items-center">
+            <h5 class="card-title">Diet: {{object.get_diet_type_display}}</h5>
+            <li>
+              CONSUMPTION LEVEL : {{object.consumption_level}} {{object.consumption_unit}}
+            </li>
+          
+            <p class="card-text">
+              EMISSION :<span class="emission"> {{object.diet_emission|floatformat:4}}</span> 
+              <strong>{{object.diet_emission_unit}}</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="card border-info mb-3" style="max-width: 90rem;">
+          <div class="card-header text-center" data-toggle="tooltip" data-placement="top" title="FOOD WASTE">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-trash2" viewBox="0 0 16 16">
+              <path d="M14 3a.7.7 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671L2.037 3.225A.7.7 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2M3.215 4.207l1.493 8.957a1 1 0 0 0 .986.836h4.612a1 1 0 0 0 .986-.836l1.493-8.957C11.69 4.689 9.954 5 8 5s-3.69-.311-4.785-.793"/>
+            </svg>
+          </div>
+          <div class="card-body text-info align-items-center">
+            <h5 class="card-title">LEVEL OF WASTAGE : {{object.get_level_of_wastage_display}} {{object.consumption_unit}}</h5>
+            <p class="card-text">
+              EMISSION : <span class="emission">{{object.wastage_emission|floatformat:4}}</span> 
+              <strong>{{object.wastage_emission_unit}}</strong>
+            </p>
+          </div>
+        </div>
+</div>
+
+{% endblock %}

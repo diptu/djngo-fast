@@ -1,6 +1,6 @@
 <!-- Navbar starts -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="/">ECOLENS</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -18,26 +18,59 @@
             Vehicle Usages
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="../vehicle_usages">List</a>
+            <a class="dropdown-item" href="/vehicle_usages">List</a>
             <a class="dropdown-item" href="/vehicle_usages/create">create</a>
-            <div class="dropdown-divider"></div>
+            <!-- <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Update</a>
-            <a class="dropdown-item" href="#">Delete</a>
+            <a class="dropdown-item" href="#">Delete</a> -->
 
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Residential Usages</a>
+
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Residential Usages
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/household_usages">List</a>
+            <a class="dropdown-item" href="/household_usages/create">create</a>
+            <!-- <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Update</a>
+            <a class="dropdown-item" href="#">Delete</a> -->
+
+          </div>
         </li>
 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            FOOD
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/food">List</a>
+            <a class="dropdown-item" href="/food/create">create</a>
+            <!-- <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Update</a>
+            <a class="dropdown-item" href="#">Delete</a> -->
+
+          </div>
+        </li>
+
+
+
+        <!-- <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Residential Usages</a>
+        </li> -->
+
         <li class="nav-item">
-          <a class="nav-link" href="/signup">Sign UP</a>
+          <a class="nav-link" href="/accounts/signup">Sign UP</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="/accounts/login">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/logout">Log out</a>
+          <a class="nav-link" href="/accounts/logout">Log out</a>
         </li>
       </ul>
     </div>
