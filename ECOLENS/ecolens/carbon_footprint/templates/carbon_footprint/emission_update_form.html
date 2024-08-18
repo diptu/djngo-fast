@@ -1,0 +1,17 @@
+{% extends "includes/base.html" %}
+
+{% block content %}
+<div class="row">
+    <h4>{{ heading|capfirst }}</h4>
+</div>
+<div class="row g-3 align-items-center">
+
+<form method="post">{% csrf_token %}
+    <div class="col-auto">
+        {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</div>
+</form>
+</div>
+{% endblock %}

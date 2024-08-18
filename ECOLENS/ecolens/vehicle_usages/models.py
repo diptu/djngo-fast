@@ -54,8 +54,8 @@ class DistanceUnit(models.TextChoices):
 
 
 class CO2EmissionUnit(models.TextChoices):
-    TCO2 = "tCO2", "Tons of Carbon Dioxide"
-    # TCO2EQ_PER_KM = "tCO2", "Tons of Carbon Dioxide"
+    TCO2 = "tCO2equ", "Tons of Carbon Dioxide Equvalant"
+    TCO2_Y = "tCO2equ/year", "Tons of Carbon Dioxide Equvalant per year"
 
 
 class VehicleUsages(models.Model):
@@ -130,42 +130,50 @@ class VehicleUsages(models.Model):
     # CALCULATED FILDS
     flight_emission = models.FloatField(default=0)
     flight_emission_unit = models.CharField(
-        max_length=10,
+        max_length=12,
         choices=CO2EmissionUnit.choices,
         default=CO2EmissionUnit.TCO2,
         blank=False,
     )
     public_transit_emission = models.FloatField(default=0)
     transit_emission_unit = models.CharField(
-        max_length=10,
+        max_length=12,
         choices=CO2EmissionUnit.choices,
         default=CO2EmissionUnit.TCO2,
         blank=False,
     )
     gasoline_car_emissions = models.FloatField(default=0)
     gasoline_car_emission_unit = models.CharField(
-        max_length=10,
+        max_length=12,
         choices=CO2EmissionUnit.choices,
         default=CO2EmissionUnit.TCO2,
         blank=False,
     )
     diesel_car_emissions = models.FloatField(default=0)
     diesel_car_emissions_unit = models.CharField(
-        max_length=10,
+        max_length=12,
         choices=CO2EmissionUnit.choices,
         default=CO2EmissionUnit.TCO2,
         blank=False,
     )
     electric_car_emissions = models.FloatField(default=0)
     electric_car_emissions_unit = models.CharField(
-        max_length=10,
+        max_length=12,
         choices=CO2EmissionUnit.choices,
         default=CO2EmissionUnit.TCO2,
         blank=False,
     )
     hybrid_car_emissions = models.FloatField(default=0)
     hybrid_car_emissions_unit = models.CharField(
-        max_length=10,
+        max_length=12,
+        choices=CO2EmissionUnit.choices,
+        default=CO2EmissionUnit.TCO2,
+        blank=False,
+    )
+
+    vehicle_footprint = models.FloatField(default=0)
+    vehicle_footprint_unit = models.CharField(
+        max_length=12,
         choices=CO2EmissionUnit.choices,
         default=CO2EmissionUnit.TCO2,
         blank=False,
@@ -200,6 +208,14 @@ class VehicleUsages(models.Model):
             HYBRID_CAR_EMISSIONS_PER_KM[self.hybrid_car_unit] * self.hybrid_car_driven
         ) + HYBRID_CAR_MANUFACTURING_EMISSIONS[self.hybrid_car_unit]
 
+        self.vehicle_footprint = (
+            self.flight_emission
+            + self.public_transit_emission
+            + self.gasoline_car_emissions
+            + self.diesel_car_emissions
+            + self.electric_car_emissions
+            + self.hybrid_car_emissions
+        )
         super().save(*args, **kwargs)
 
     def __str__(self):

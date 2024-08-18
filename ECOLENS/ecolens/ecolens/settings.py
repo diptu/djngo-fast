@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "vehicle_usages",
     "household",
     "food",
+    "carbon_footprint",
+    "consumer_good",
 ]
 
 MIDDLEWARE = [

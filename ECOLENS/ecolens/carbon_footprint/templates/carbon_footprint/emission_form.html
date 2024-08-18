@@ -1,0 +1,24 @@
+{% extends "includes/base.html" %}
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="text-center alert alert-{{ message.tags }}">
+    {{ message|safe }}
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="row">
+    <h4>{{ heading|capfirst }}</h4>
+</div>
+
+<div class="col-sm-8 align-items-center">
+    <form method="post">{% csrf_token %}
+        <div class="col-auto">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-primary" value="Save">Save</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "includes/base.html" %}
+
+{% block content %}
+
+
+<h3>{{heading|upper}}</h3>
+  <div class="card-deck">
+        <div class="card border-primary mb-3" style="max-width: 50rem;">
+          <div class="card-header text-center" data-toggle="tooltip" data-placement="top" title="CO2 FOOTPRINT">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-archive-fill" viewBox="0 0 16 16">
+              <path d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1M.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8z"/>
+            </svg> 
+          </div>
+          <div class="card-body text-primary align-items-center">
+            <h5 class="card-title">Household Emissions: </h5>
+            <ul>
+              <li>
+                vehicle usages footprint : {{object.vehicle_usages.vehicle_footprint}} {{object.vehicle_usages.vehicle_footprint_unit}}
+              </li>
+
+              <li>
+                residential footprint : {{object.household_usages.residential_footprint}} {{object.household_usages.residential_footprint_unit}}
+              </li>
+              <li>
+                Food footprint : {{object.food_consumption.food_footprint}} {{object.food_consumption.food_footprint_unit}}
+              </li>
+            </ul>
+          </div>
+
+          <div class="card-body text-primary align-items-center">
+            <h5 class="card-title">Business Emissions: </h5>
+          
+              
+          </div>
+        </div>
+
+</div>
+
+{% endblock %}

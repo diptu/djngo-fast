@@ -26,5 +26,6 @@ urlpatterns = [
     path("vehicle_usages/", include("vehicle_usages.urls")),
     path("household_usages/", include("household.urls")),
     path("food/", include("food.urls")),
+    path("carbon_footprint/", include("carbon_footprint.urls")),
     path("accounts/", include("accounts.urls")),
 ]
