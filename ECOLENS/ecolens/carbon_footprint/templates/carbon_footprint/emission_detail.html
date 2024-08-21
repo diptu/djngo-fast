@@ -5,25 +5,32 @@
 
 <h3>{{heading|upper}}</h3>
   <div class="card-deck">
-        <div class="card border-primary mb-3" style="max-width: 50rem;">
+        <div class="card border-info mb-3" style="max-width: 50rem;">
           <div class="card-header text-center" data-toggle="tooltip" data-placement="top" title="CO2 FOOTPRINT">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-archive-fill" viewBox="0 0 16 16">
               <path d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1M.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8z"/>
             </svg> 
           </div>
-          <div class="card-body text-primary align-items-center">
+          <div class="card-body text-info align-items-center">
             <h5 class="card-title">Household Emissions: </h5>
             <ul>
               <li>
-                vehicle usages footprint : {{object.vehicle_usages.vehicle_footprint}} {{object.vehicle_usages.vehicle_footprint_unit}}
+                <a class="nav-link" href="{{object.vehicle_usages.get_absolute_url}}"> vehicle usages footprint : {{object.vehicle_usages.vehicle_footprint|floatformat:4}} {{object.vehicle_usages.vehicle_footprint_unit}}</a>
               </li>
 
               <li>
-                residential footprint : {{object.household_usages.residential_footprint}} {{object.household_usages.residential_footprint_unit}}
+                <a class="nav-link" href="{{object.household_usages.get_absolute_url}}">residential footprint : {{object.household_usages.residential_footprint|floatformat:4}} {{object.household_usages.residential_footprint_unit}}</a>
               </li>
               <li>
-                Food footprint : {{object.food_consumption.food_footprint}} {{object.food_consumption.food_footprint_unit}}
+                <a class="nav-link" href="{{object.food_consumption.get_absolute_url}}">Food footprint : {{object.food_consumption.food_footprint|floatformat:4}} {{object.food_consumption.food_footprint_unit}}</a>
               </li>
+              <li>
+                <a class="nav-link" href="{{object.consumer_good.get_absolute_url}}"> Consumer Goods and Services footprint : {{object.consumer_good.consumer_good_emission|floatformat:4}} {{object.consumer_good.emission_unit}}</a>
+              </li>
+              <li>
+               <a class="nav-link" href="{{object.other_uages.get_absolute_url}}">  Other footprint :{{object.other_uages.other_emission|floatformat:4}} {{object.other_uages.emission_unit}}</a>
+              </li>
+
             </ul>
           </div>
 

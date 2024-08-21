@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "household",
     "food",
     "carbon_footprint",
+    "general",
+    "other",
     "consumer_good",
 ]
 

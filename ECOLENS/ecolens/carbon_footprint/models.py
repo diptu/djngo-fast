@@ -3,6 +3,8 @@ from django.urls import reverse
 from vehicle_usages.models import VehicleUsages
 from household.models import HouseholdUsages
 from food.models import FoodConsumption
+from consumer_good.models import ConsumerGood
+from other.models import OtherUsages
 
 
 class CO2EmissionUnit(models.TextChoices):
@@ -16,6 +18,9 @@ class Emission(models.Model):
     vehicle_usages = models.ForeignKey(VehicleUsages, on_delete=models.CASCADE)
     household_usages = models.ForeignKey(HouseholdUsages, on_delete=models.CASCADE)
     food_consumption = models.ForeignKey(FoodConsumption, on_delete=models.CASCADE)
+    consumer_good = models.ForeignKey(ConsumerGood, on_delete=models.CASCADE)
+    other_uages = models.ForeignKey(OtherUsages, on_delete=models.CASCADE)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -33,11 +38,13 @@ class Emission(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        print(f"vehicle_footprint:{self.vehicle_usages.vehicle_footprint}")
+        # print(f"vehicle_footprint:{self.vehicle_usages.vehicle_footprint}")
         self.resedential_emission = (
             self.vehicle_usages.vehicle_footprint
             + self.household_usages.residential_footprint
             + self.food_consumption.food_footprint
+            + self.consumer_good.consumer_good_emission
+            + self.other_uages.other_emission
         )
         # TODO: UPdate with Business Emissions component
         self.business_emission = 0

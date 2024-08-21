@@ -11,6 +11,14 @@ from food.utils import (
     FOOD_CONSUMPTION_CONVERSION_FACTORS,
     WASTE_LABEL_CONVERSION_FACTORS,
 )
+from django.core.exceptions import ValidationError
+
+from general.models import General
+
+
+def validate_wastage_label(value):
+    if value < 0.0 or value > 1.0:
+        raise ValidationError("Invalid input. Input must be between 0 and 1.")
 
 
 class FoodConsumption(models.Model):
@@ -27,18 +35,15 @@ class FoodConsumption(models.Model):
         choices=ConsumptionLabel.choices,
         default=ConsumptionLabel.LWC,
         blank=False,
-        help_text="""Select the appropriate waste category based on the percentage.
-         0%: Minimal Waste, 0 to 10%: Low Waste, 10 to 25%:Moderate Waste, >255%: High Waste""",
-    )
-    level_of_wastage = models.CharField(
-        max_length=10,
-        choices=WasteLabel.choices,
-        default=WasteLabel.LW,
-        blank=False,
-        help_text="""Select the appropriate waste category based on the percentage.
-         0%: Minimal Waste, 0 to 10%: Low Waste, 10 to 25%:Moderate Waste, >255%: High Waste""",
+        help_text="""Select the appropriate waste category based on the percentage.""",
     )
 
+    level_of_wastage = models.FloatField(
+        default=0.0,
+        validators=[validate_wastage_label],
+        help_text="e.g. 0.3 to represent 30%",
+        blank=False,
+    )
     consumption_unit = models.CharField(
         max_length=12,
         choices=CO2EmissionUnit.choices,
@@ -46,11 +51,7 @@ class FoodConsumption(models.Model):
         blank=False,
     )
 
-    # Vehicle_usages = models.ForeignKey(VehicleUsages, on_delete=models.CASCADE)
-    # household_usages = models.ForeignKey(
-    #     HouseholdUsages,
-    #     on_delete=models.CASCADE,
-    # )
+    general = models.ForeignKey(General, on_delete=models.CASCADE)
 
     # CALCULATED FILDS
     diet_emission = models.FloatField(default=0)
@@ -81,9 +82,13 @@ class FoodConsumption(models.Model):
         self.diet_emission = (
             FOOD_TYPE_CONVERSION_FACTORS[self.diet_type]
             * FOOD_CONSUMPTION_CONVERSION_FACTORS[self.consumption_level]
+            * self.general.num_people
         )
         self.wastage_emission = (
-            0.564290 * WASTE_LABEL_CONVERSION_FACTORS[self.level_of_wastage]
+            0.564290
+            * FOOD_CONSUMPTION_CONVERSION_FACTORS[self.consumption_level]
+            * self.level_of_wastage
+            * self.general.num_people
         )
         self.food_footprint = self.diet_emission + self.wastage_emission
         super().save(*args, **kwargs)

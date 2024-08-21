@@ -24,6 +24,8 @@ class EmissionCreateView(SuccessMessageMixin, CreateView):
         "vehicle_usages",
         "household_usages",
         "food_consumption",
+        "consumer_good",
+        "other_uages",
         "unit",
     ]
     # fields = "__all__"
@@ -77,6 +79,8 @@ class EmissionUpdateView(UpdateView):
         "vehicle_usages",
         "household_usages",
         "food_consumption",
+        "consumer_good",
+        "miscellaneous",
         "unit",
     ]
     template_name_suffix = "_update_form"

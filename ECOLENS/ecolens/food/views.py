@@ -25,6 +25,7 @@ class FoodConsumptionCreateView(SuccessMessageMixin, CreateView):
         "consumption_level",
         "level_of_wastage",
         "consumption_unit",
+        "general",
     ]
     # fields = "__all__"
 
@@ -78,6 +79,7 @@ class FoodConsumptionUpdateView(UpdateView):
         "consumption_level",
         "level_of_wastage",
         "consumption_unit",
+        "general",
     ]
     template_name_suffix = "_update_form"
     success_url = reverse_lazy("food:food_consumption_list")

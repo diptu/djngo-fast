@@ -34,20 +34,6 @@ def validate_distance_unit(value):
         raise ValidationError("Invalid Unit. Choose from Kilometer or Mile.")
 
 
-# class EnergyUnit(models.TextChoices):
-#     KWh = "KWh", "Kilowatt-hour"
-#     Wh = "Wh", "Watt-hour"
-
-
-# class VolumeUnit(models.TextChoices):
-#     L = "L", "Liter"
-#     KL = "KL", "Kiloliter"
-
-
-# class AreaUnit(models.TextChoices):
-#     m2 = "m2", "Square meter"
-
-
 class DistanceUnit(models.TextChoices):
     Km = "Km", "Kilometer"
     Mi = "Mi", "Mile"

@@ -19,7 +19,7 @@ from django.utils.decorators import method_decorator
 # Create Class based views here.
 
 
-@method_decorator(login_required, name="dispatch")
+# @method_decorator(login_required, name="dispatch")
 class VehicleUsagesCreateView(SuccessMessageMixin, CreateView):
     # form_class = VehicleUsagesForm
     model = VehicleUsages
