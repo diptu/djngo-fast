@@ -14,7 +14,7 @@ urlpatterns = [
     path(
         "",
         VehicleUsagesListView.as_view(),
-        name="vihicle_usages_list",
+        name="list",
     ),
     path(
         "<int:pk>",
@@ -24,16 +24,16 @@ urlpatterns = [
     path(
         "create",
         VehicleUsagesCreateView.as_view(),
-        name="vehicle_usages_create",
+        name="create",
     ),
     path(
         "<int:pk>/update",
         VehicleUsagesUpdateView.as_view(),
-        name="vehicle_usages_update",
+        name="update",
     ),
     path(
         "<int:pk>/delete",
         VehicleUsagesDeleteView.as_view(),
-        name="vehicle_usages_delete",
+        name="delete",
     ),
 ]

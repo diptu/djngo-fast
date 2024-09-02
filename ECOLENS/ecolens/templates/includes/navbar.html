@@ -1,119 +1,45 @@
-<!-- Navbar starts -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">ECOLENS</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/">EcoLens</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav nav-item-right">
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/about">About</a>
         </li>
         
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Vehicle Usages
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/vehicle_usages">List</a>
-            <a class="dropdown-item" href="/vehicle_usages/create">create</a>
-            <!-- <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Update</a>
-            <a class="dropdown-item" href="#">Delete</a> -->
-
-          </div>
-        </li>
-
-
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Residential Usages
+            Household Emission
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/household_usages">List</a>
-            <a class="dropdown-item" href="/household_usages/create">create</a>
-            <!-- <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Update</a>
-            <a class="dropdown-item" href="#">Delete</a> -->
-
+            <a class="dropdown-item" href="/vehicle_usages">Travel</a>
+            <a class="dropdown-item" href="/vehicle_usages/create">Create Travel Matrices</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/household_usages">Residential</a>
+            <a class="dropdown-item" href="/household_usages/create">Create Residential Matrices</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/food">Food</a>
+            <a class="dropdown-item" href="/food/create">Create Food  Matrices</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/consumer_good">Consumer Good & Services</a>
+            <a class="dropdown-item" href="/consumer_good/create">Create Consumer Good & Services Matrices</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/other">Miscellaneous</a>
+            <a class="dropdown-item" href="/other/create">Create Miscellaneous Matrices</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/carbon_footprint">Carbon Footprint</a>
+            <a class="dropdown-item" href="/carbon_footprint/create">Create Carbon Footprint Matrices</a>
+            
+        
           </div>
         </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            FOOD
-          </a>
-          
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/food">List</a>
-            <a class="dropdown-item" href="/food/create">create</a>
-            <!-- <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Update</a>
-            <a class="dropdown-item" href="#">Delete</a> -->
-
-          </div>
-        </li>
-
-
-
-
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            consumer_good
-          </a>
-          
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/consumer_good">List</a>
-            <a class="dropdown-item" href="/consumer_good/create">create</a>
-          
-
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            miscellaneous
-          </a>
-          
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/other">List</a>
-            <a class="dropdown-item" href="/other/create">create</a>
-          
-
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            carbon_footprint
-          </a>
-          
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/carbon_footprint">List</a>
-            <a class="dropdown-item" href="/carbon_footprint/create">create</a>
-          
-
-          </div>
-        </li>  -->
-
-        <!-- <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Residential Usages</a>
-        </li> -->
-
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="/accounts/signup">Sign UP</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/accounts/login">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/accounts/logout">Log out</a>
-        </li> -->
       </ul>
     </div>
   </nav>
-  <!-- Navbar ends -->

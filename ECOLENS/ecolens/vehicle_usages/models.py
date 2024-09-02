@@ -176,23 +176,29 @@ class VehicleUsages(models.Model):
             self.public_transit_distance
             * PUBLIC_TRNSIT_CONVERSION_FACTORS[self.transit_unit]
         )
-        print(f"public_transit_emission: {self.public_transit_emission},")
         self.gasoline_car_emissions = (
             self.gasoline_car_driven
             * GASOLINE_CAR_EMISSIONS_PER_KM[self.gasolin_car_unit]
-        ) + GASOLINE_CAR_MANUFACTURING_EMISSIONS[self.gasolin_car_unit]
+            + GASOLINE_CAR_MANUFACTURING_EMISSIONS[self.gasolin_car_unit]
+            * self.num_of_gasolin_cars
+        )
 
         self.diesel_car_emissions = (
             self.diesel_car_driven * DISEL_CAR_EMISSIONS_PER_KM[self.diesel_car_unit]
-        ) + DIESEL_CAR_MANUFACTURING_EMISSIONS[self.diesel_car_unit]
-
+            + DIESEL_CAR_MANUFACTURING_EMISSIONS[self.diesel_car_unit]
+            * self.num_of_diesel_cars
+        )
         self.electric_car_emissions = (
             ELECTRIC_CAR_EMISSIONS_PER_KM[self.electric_car_unit]
             * self.electric_car_driven
-        ) + ELECTRIC_CAR_MANUFACTURING_EMISSIONS[self.electric_car_unit]
+            + ELECTRIC_CAR_MANUFACTURING_EMISSIONS[self.electric_car_unit]
+            * self.num_of_electric_cars
+        )
         self.hybrid_car_emissions = (
-            HYBRID_CAR_EMISSIONS_PER_KM[self.hybrid_car_unit] * self.hybrid_car_driven
-        ) + HYBRID_CAR_MANUFACTURING_EMISSIONS[self.hybrid_car_unit]
+            self.hybrid_car_driven * HYBRID_CAR_EMISSIONS_PER_KM[self.hybrid_car_unit]
+            + HYBRID_CAR_MANUFACTURING_EMISSIONS[self.hybrid_car_unit]
+            * self.num_of_hybrid_cars
+        )
 
         self.vehicle_footprint = (
             self.flight_emission

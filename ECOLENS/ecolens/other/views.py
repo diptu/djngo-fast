@@ -2,9 +2,11 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
 # from .forms import VehicleUsagesForm
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from general.models import General
 
 # Create your views here.
 from .models import OtherUsages
@@ -20,6 +22,13 @@ class OtherCreateView(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy("other:other_list")
     # template_name = "books/update.html"
     success_message = "Created successfully!"
+
+    def get(self, request, *args, **kwargs):
+        if not General.objects.count():
+            messages.warning(self.request, "Your object has need to be created yet.")
+            return redirect(reverse_lazy("general:general_create"))
+
+        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

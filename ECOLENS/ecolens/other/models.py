@@ -10,6 +10,9 @@ from ecolens.custom_choices import (
     Miscellaneous,
 )
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 
 class OtherUsages(models.Model):
     id = models.AutoField(primary_key=True)
@@ -76,3 +79,12 @@ class OtherUsages(models.Model):
         return reverse(
             "other:detail", kwargs={"pk": self.pk}
         )  # f"/miscellaneous/{self.pk}"
+
+
+@receiver(post_save, sender=General)
+def update_other_usages(sender, instance, **kwargs):
+    if not kwargs.get("created", False):  # Only update on updates
+        OtherUsages.objects.filter(general=instance).update(
+            public_services_emission=OTHERS_CONVERSION_FACTORS[Miscellaneous.P]
+            * instance.num_people
+        )

@@ -7,6 +7,11 @@ class CO2EmissionUnit(models.TextChoices):
     # TCO2EQ_PER_KM = "tCO2", "Tons of Carbon Dioxide"
 
 
+class DistanceUnit(models.TextChoices):
+    Km = "Km", "Kilometer"
+    Mi = "Mi", "Mile"
+
+
 class Miscellaneous(models.TextChoices):
     E = "EDUCATION"
     A = "ACTIVITIES"

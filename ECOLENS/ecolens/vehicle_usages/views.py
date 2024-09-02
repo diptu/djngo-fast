@@ -1,27 +1,17 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
+from django.contrib.messages.views import SuccessMessageMixin
+
+from django.urls import reverse_lazy
+
+from django.views.generic import DetailView, ListView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 # Create your views here.
 from .models import VehicleUsages
-from .forms import VehicleUsagesForm
-from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView
-from django.views.generic.edit import UpdateView, CreateView, DeleteView
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.contrib.messages.views import SuccessMessageMixin
-
-# from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-
-# from django.contrib.auth.decorators import login_required
 
 # Create Class based views here.
 
 
-# @method_decorator(login_required, name="dispatch")
 class VehicleUsagesCreateView(SuccessMessageMixin, CreateView):
-    # form_class = VehicleUsagesForm
     model = VehicleUsages
     # ristrict field input
     fields = [
@@ -42,10 +32,8 @@ class VehicleUsagesCreateView(SuccessMessageMixin, CreateView):
         "hybrid_car_driven",
         "hybrid_car_unit",
     ]
-    # fields = "__all__"
 
-    success_url = reverse_lazy("vehicle_usages:vihicle_usages_list")
-    # template_name = "books/update.html"
+    success_url = reverse_lazy("vehicle_usages:list")
     success_message = "Created successfully!"
 
     def get_context_data(self, **kwargs):
@@ -63,14 +51,10 @@ class VehicleUsagesListView(ListView):
         # '-' indicates descending order
         order = self.request.GET.get("orderby", "-updated_at")
         new_context = VehicleUsages.objects.order_by(order)
-
         return new_context
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = context["paginator"]
-        # page = context["page"]
-        # Add additional context variables as needed
         context["title"] = "vehicle usages list"
         context["heading"] = "vehicle usages list"
         return context
@@ -106,7 +90,9 @@ class VehicleUsagesUpdateView(UpdateView):
         "hybrid_car_driven",
         "hybrid_car_unit",
     ]
-    template_name_suffix = "_update_form"
+    success_message = "Updated successfully!"
+
+    success_url = reverse_lazy("vehicle_usages:list")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -117,4 +103,5 @@ class VehicleUsagesUpdateView(UpdateView):
 
 class VehicleUsagesDeleteView(DeleteView):
     model = VehicleUsages
-    success_url = reverse_lazy("vehicle_usages:vihicle_usages_list")
+    success_message = "Deleted successfully!"
+    success_url = reverse_lazy("vehicle_usages:list")

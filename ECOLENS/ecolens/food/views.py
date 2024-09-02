@@ -15,6 +15,11 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 
+from general.models import General
+
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+
 
 # @method_decorator(login_required, name="dispatch")
 class FoodConsumptionCreateView(SuccessMessageMixin, CreateView):
@@ -32,6 +37,23 @@ class FoodConsumptionCreateView(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy("food:food_consumption_list")
     # template_name = "books/update.html"
     success_message = "Created successfully!"
+
+    def get(self, request, *args, **kwargs):
+        # Check if a condition is met and redirect if necessary
+
+        if not General.objects.count():
+            messages.warning(self.request, "Your object has need to be created yet.")
+            return redirect(reverse_lazy("general:general_create"))
+
+        return super().get(request, *args, **kwargs)
+
+    # def render_to_response(self, context, **response_kwargs):
+    #     general = General.objects.count()
+    #     print(f"general:{general}")
+    #     if general <= 0:
+    #         print("general is empty!")
+    #         messages.success(self.request, "Your object has need to be created first.")
+    #         return redirect(reverse_lazy("general:general_create"))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
