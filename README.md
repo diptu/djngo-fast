@@ -6,12 +6,8 @@ To develop a robust and efficient application that leverages the strengths of Dj
      - python3 -m venv venv
   
   2. Activate the Virtual Environment(Linux/macOS:)
-    - source venv/bin/activate
+     - source venv/bin/activate
   4.  Change Directory
-    - cd ECOLENS/ecolens
+     - cd ECOLENS/ecolens
   5. Start the Django Development Server
-    - python manage.py runserver
-  
-
-  
-
+     - python manage.py runserver
