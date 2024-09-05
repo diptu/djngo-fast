@@ -32,16 +32,15 @@ EcoLens is more than just a calculator; it's a journey towards a greener lifesty
 ```bash
    source venv/bin/activate
 ```
-3. Install Dependency
-```bash
-   pip3 install -r requirements.txt
-```
-5. Change Directory
+3. Change Directory
 ```bash
    cd ECOLENS/ecolens
 ```
-
-1. Start the Django Development Server
+4. Install Dependency
+```bash
+   pip3 install -r requirements.txt
+```
+5. Start the Django Development Server
 ```bash
    python manage.py runserver
 ```
