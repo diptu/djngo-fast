@@ -1,16 +1,16 @@
-# Django-Fast
+# EcoLens
 ================
 
 ## Description
 ------------
-To develop a robust and efficient application that leverages the strengths of Django's Object-Relational Mapper (ORM) for data modeling and management, and Fsatapi for creating an API service. The integration will streamline data flow, enhance application performance, and provide a seamless user experience.
+EcoLens is more than just a calculator; it's a journey towards a greener lifestyle. Discover your carbon footprint, set personalized goals, and track your progress as you make positive changes. EcoLens provides actionable recommendations to help you reduce your environmental impact.
 
 
 ## Table of Contents
 -----------------
 
 * [Installation](#installation)
-* [Usage](#usage)
+* [Contact](#contact)
   
 
 ## Installation
@@ -42,5 +42,6 @@ To develop a robust and efficient application that leverages the strengths of Dj
    python manage.py runserver
 ```
 
-# Contact Info
+## Contact
+------------
 If you have any question or want to reach me directly, Contact (Nazmul Alam Diptu)(https://www.linkedin.com/in/diptu/)
