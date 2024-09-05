@@ -41,7 +41,6 @@ class EmissionCreateView(SuccessMessageMixin, CreateView):
     # fields = "__all__"
 
     success_url = reverse_lazy("carbon_footprint:carbon_footprint_list")
-    # template_name = "books/create.html"
     success_message = "Created successfully!"
 
     def get(self, request, *args, **kwargs):
@@ -54,7 +53,7 @@ class EmissionCreateView(SuccessMessageMixin, CreateView):
 
         if vehicle_count <= 0:
             messages.warning(self.request, "Your object has need to be created yet.")
-            return redirect(reverse_lazy("vehicle_usages:vehicle_usages_create"))
+            return redirect(reverse_lazy("vehicle_usages:create"))
         elif household_count <= 0:
             messages.warning(self.request, "Your object has need to be created yet.")
             return redirect(reverse_lazy("household:household_usages_create"))

@@ -30,6 +30,7 @@ urlpatterns = [
     path("carbon_footprint/", include("carbon_footprint.urls")),
     path("consumer_good/", include("consumer_good.urls")),
     path("other/", include("other.urls")),
+    path("travel/", include("travel.urls")),
     path("", include("general.urls")),
     path("accounts/", include("accounts.urls")),
 ]

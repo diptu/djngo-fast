@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "general",
     "other",
     "consumer_good",
+    # Business Emissions Calculations
+    "travel",
 ]
 
 MIDDLEWARE = [
